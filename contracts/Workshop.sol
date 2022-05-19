@@ -16,12 +16,12 @@ contract Workshop is Ownable {
     event registrationCode(string code, string workshopName);
 
     modifier isWorkshopOwner() {
-        require(bytes(workshopList[msg.sender]).length > 0, "Permintaan anda tidak dapat dipenuhi, silahkan daftarkan diri anda untuk menjadi workshop rekanan");
+        require(bytes(workshopList[msg.sender]).length > 0, "Your request cannot be fulfilled, please register yourself to become a partner workshop");
         _;
     }
 
     modifier registrationExist(string memory _code) {
-        require(bytes(workshopRegister[_code].workshopName).length > 0, "Nomor registrasi tidak ditemukan");
+        require(bytes(workshopRegister[_code].workshopName).length > 0, "Registration number not found");
         _;
     }
 

@@ -11,7 +11,7 @@ contract Ownable {
     }
 
     modifier isOwner() {
-        require(owner == msg.sender, "Permintaan anda tidak dapat dipenuhi");
+        require(owner == msg.sender, "Your request could not be fulfilled");
         _;
     }
 }

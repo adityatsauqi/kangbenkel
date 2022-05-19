@@ -25,11 +25,11 @@ contract ServiceTransaction is Workshop {
                 isValid = true;
             }
         }
-        require(isValid, "Kode transaksi anda tidak valid, silahkan cek kembali kode transaksi.");
+        require(isValid, "Your transaction code is invalid, please check your transaction code again");
         _;
     }
     modifier validFee(string memory code) {
-        require(serviceHistory[code].serviceFee == msg.value, "Biaya service tidak sesuai.");
+        require(serviceHistory[code].serviceFee == msg.value, "Service fee does not match.");
         _;
     }
 
