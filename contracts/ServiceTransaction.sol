@@ -40,7 +40,7 @@ contract ServiceTransaction is Workshop {
 
     function payService(string memory code) public payable validTransactionUnpaid(code) validFee(code){
         serviceHistory[code].status = serviceStatus.PAID;
-        uint ownerFee = msg.value / 100;
+        uint ownerFee = msg.value / 100 * 30;
         serviceHistory[code].serviceOwner.transfer(msg.value - ownerFee);
         owner.transfer(ownerFee);
     }
