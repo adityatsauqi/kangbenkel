@@ -2,7 +2,6 @@
 
 pragma solidity ^0.7.0;
 
-import "./RandomString.sol";
 import "./Workshop.sol";
 
 contract ServiceTransaction is Workshop {
@@ -34,7 +33,7 @@ contract ServiceTransaction is Workshop {
     }
 
     function createService(string memory description, string memory vehicleNumber, uint serviceFee) public isWorkshopOwner {
-        string memory key = RandomString.getKey();
+        string memory key = generate("SRV");
         serviceHistory[key] = ServiceStruct(block.timestamp, description, vehicleNumber, serviceFee, serviceStatus.UNPAID, msg.sender);
         emit serviceEvent(key);
     }

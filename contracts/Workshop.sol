@@ -2,10 +2,10 @@
 
 pragma solidity ^0.7.0;
 
-import "./RandomString.sol";
+import "./KeyGenerator.sol";
 import "./Ownable.sol";
 
-contract Workshop is Ownable {
+contract Workshop is Ownable, KeyGenerator {
     
     struct workshopSturct {
         address workshopOwner;
@@ -14,6 +14,7 @@ contract Workshop is Ownable {
     mapping(string => workshopSturct) public workshopRegister;
     mapping(address => string) public workshopList;
     event registrationCode(string code, string workshopName);
+    
 
     modifier isWorkshopOwner() {
         require(bytes(workshopList[msg.sender]).length > 0, "Your request cannot be fulfilled, please register yourself to become a partner workshop");
@@ -26,7 +27,7 @@ contract Workshop is Ownable {
     }
 
     function registerWorkshop(string memory workshopName) public {
-        string memory key = RandomString.getKey();
+        string memory key = generate("REG");
         workshopRegister[key] = workshopSturct(msg.sender, workshopName);
         emit registrationCode(key, workshopName);
     }

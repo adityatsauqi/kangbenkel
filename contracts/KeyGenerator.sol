@@ -2,11 +2,24 @@
 
 pragma solidity ^0.7.0;
 
-library RandomString {
-    function getKey() public view returns (string memory key){
-        return uint2str(uint(keccak256(abi.encodePacked(block.difficulty, block.timestamp))));
+import "./String.sol";
+
+contract KeyGenerator {
+    string public lates_key;
+    uint sequence;
+
+    constructor(){
+        sequence = 1;
     }
-    function uint2str(uint _i) public pure returns (string memory _uintAsString) {
+
+    function generate(string memory prefix) public returns (string memory) {
+        string memory key = String.concat(String.concat(prefix, "-"), uint2str(sequence));
+        sequence++;
+        lates_key = key;
+        return key;
+    }
+
+    function uint2str(uint _i) internal pure returns (string memory str){
         if (_i == 0) {
             return "0";
         }
