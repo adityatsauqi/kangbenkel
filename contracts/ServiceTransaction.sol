@@ -24,7 +24,7 @@ contract ServiceTransaction is Workshop {
                 isValid = true;
             }
         }
-        require(isValid, "Your transaction code is invalid, please check your transaction code again");
+        require(isValid, "Your transaction code has been paid, please check your transaction code again");
         _;
     }
     modifier validFee(string memory code) {
